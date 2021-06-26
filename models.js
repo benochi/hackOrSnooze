@@ -123,7 +123,7 @@ class User {
     this.ownStories = ownStories.map(s => new Story(s));
 
     // store the login token on the user so it's easy to find for API calls.
-    this.loginToken = token;
+    this.loginToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbWVndXl0biIsImlhdCI6MTYyNDcwNTExN30.SkzuoXW2eKDASZtF5Z102lHeq_Gi-trpYjrZpKvbVBc";
   }
 
   /** Register new user in API, make User instance & return it.
