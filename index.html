@@ -51,6 +51,19 @@
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
   <form id="story-form" class="hidden" action="">
+    <div>
+      <label for="new-title">Title</label>
+      <input id="new-title" required placeholder="Title">
+    </div>
+    <div>
+      <label for="new-author">Author</label>
+      <input id="new-author" required placeholder="Author name">
+    </div>    
+    <div>
+      <label for="new-url">Url</label>
+      <input id="new-url" required placeholder="url">
+    </div>
+    <button type="submmit">Submit</button>
   </form>
 
   <!-- loading message (removed by JS after stories loaded) -->
@@ -58,6 +71,9 @@
 
   <!-- List of all stories -->
   <ol id="all-stories-list" class="stories-list"></ol>
+
+  <!--favorites-->
+  <ol id="favorite-stories" class="hidden stories-list"></ol>
 
 </section>
 
