@@ -262,5 +262,8 @@ async notFavorite(story){ //DELETE API call
   favoriteStatus(story) {  //boolean if favorite is true/false inside "favorites" array
     return this.favorites.includes(fav => fav.storyId === story.storyId) 
   }
+  isFavorite(story) {
+    return this.favorites.some(s => (s.storyId === story.storyId));
+  }
 }
 
