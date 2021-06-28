@@ -75,25 +75,41 @@ class StoryList {
 
   async addStory(user, { title, author, url }) {
     // UNIMPLEMENTED: complete this function!
-    const token = user.loginToken
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbWVndXl0biIsImlhdCI6MTYyNDcwNTExN30.SkzuoXW2eKDASZtF5Z102lHeq_Gi-trpYjrZpKvbVBc";
     const response = await axios({ 
-      method: 'POST', 
+      method: "POST", 
       url: `${BASE_URL}/stories`, //obj = { title: , Author: , URL:} 
-      data: { token, story: { title, author, url } } 
+      data: { token, story: { title, author, url } }, 
   });
     //add story data to API... post -> stories
     //make Story instance (new story)
-    const story = new Story(response.data.story) //constructor
+    const story = new Story(response.data.story); //constructor
     //add instance to story list -> add at beginning using unshift. 
     this.stories.unshift(story);
-    user.ownStories.unshift(story);
+  
     //user = ownStories
     
     //}
     //return newStory variable
     return story;
   }
+  async removeStory(user, storyId) {
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbWVndXl0biIsImlhdCI6MTYyNDcwNTExN30.SkzuoXW2eKDASZtF5Z102lHeq_Gi-trpYjrZpKvbVBc";
+    await axios({
+      url: `${BASE_URL}/stories/${storyId}`,
+      method: "DELETE",
+      data: { token: user.loginToken }
+    });
+
+    // filter out the story whose ID we are removing
+    this.stories = this.stories.filter(story => story.storyId !== storyId);
+
+    // do the same thing for the user's list of stories & their favorites
+    user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
+    user.favorites = user.favorites.filter(s => s.storyId !== storyId);
+  }
 }
+
 
 
 /******************************************************************************
@@ -162,7 +178,7 @@ class User {
 
   static async login(username, password) {
     const response = await axios({
-      url: `${BASE_URL}/login`,
+      url: `${BASE_URL}/login`, 
       method: "POST",
       data: { user: { username, password } },
     });
@@ -214,7 +230,7 @@ class User {
 These stories should remain favorited when the page refreshes.
 Allow logged in users to see a separate list of favorited stories.*/
 
-async favorite(story) {  //pust faorite into favorites array
+async favorite(story) {  //push favorite into favorites array
   this.favorites.push(story)
   await this.addFavorite(story)
 }
@@ -247,3 +263,4 @@ async notFavorite(story){ //DELETE API call
     return this.favorites.includes(fav => fav.storyId === story.storyId) 
   }
 }
+
