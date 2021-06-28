@@ -23,8 +23,11 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+  const showStar = Boolean(currentUser);
+
   return $(`
       <li id="${story.storyId}">
+      ${showStar ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -85,7 +88,7 @@ function allFavoritesList() {
     $favoriteStories.append("<p> No favorite stories.</p>");
   } else {
     for(let favorite of currentUser.favorites) {
-      const $favorite = generateStoryMarkup(story)
+      const $favorite = generateStoryMarkup(favorite)
       $favoriteStories.append($favorite)
     }
   }
@@ -107,7 +110,7 @@ async function toggleStoryFavorite(evt) {
     $tgt.closest("i").toggleClass("fas far");
   } else {
     // currently not a favorite: do the opposite
-    await currentUser.addFavorite(story);
+    await currentUser.favorite(story);
     $tgt.closest("i").toggleClass("fas far");
   }
 }
@@ -129,3 +132,12 @@ $("ol").on("click", ".delete-button", function(e) {
   e.preventDefault();
   $(this).parent().remove();
 });
+
+function getStarHTML(story, user) {
+  const isFavorite = user.isFavorite(story);
+  const starType = isFavorite ? "fas" : "far";
+  return `
+      <span class="star">
+        <i class="${starType} fa-star"></i>
+      </span>`;
+}
