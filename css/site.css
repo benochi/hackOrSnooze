@@ -1,5 +1,3 @@
-/* General typography */
-
 body {
   font-family: Arimo, sans-serif;
   margin: 8px 7.5vw;
@@ -120,83 +118,4 @@ form > hr {
     max-width: 900px;
     margin: 8px auto;
   }
-}
-
-/* Lists of stories */
-
-.stories-list {
-  margin: 20px 5px;
-}
-
-.stories-list > li {
-  color: gray;
-  font-size: 0.8rem;
-  margin: 10px 0;
-}
-
-#stories-loading-msg {
-  font-weight: bold;
-  font-size: 150%;
-  margin: 20px 30px;
-}
-
-
-/* Individual stories */
-
-.story-link {
-  color: black;
-  font-size: 0.85rem;
-  font-weight: normal;
-  margin: 18px 0;
-}
-
-.story-link:hover {
-  text-decoration: none;
-}
-
-.story-author {
-  margin-left: 2em;
-}
-
-.story-user {
-  display: block;
-}
-
-/* Login and signup forms */
-
-.account-form button {
-  width: 4rem;
-  margin-left: 80px;
-}
-
-#signup-form button {
-  width: 8rem;
-}
-
-.account-forms-container {
-  padding-left: 20px;
-}
-
-/* Navigation bar */
-
-nav {
-  display: flex;
-  background-color: #ff6600;
-  align-items: center;
-  padding: 5px 20px;
-  border-radius: 3px 3px 0 0;
-}
-
-.navbar-brand {
-  font-weight: bold;
-}
-
-.nav-link {
-  font-size: 0.85rem;
-  margin: 0 3px;
-}
-
-.nav-right {
-  margin-left: auto;
-  text-align: right;
 }
